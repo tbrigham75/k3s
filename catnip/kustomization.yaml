@@ -1,0 +1,5 @@
+resources:
+- catnip-project.yml
+- catnip-deployment.yml
+- catnip-service.yaml
+- catnip-route.yaml

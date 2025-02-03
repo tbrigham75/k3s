@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: tomscatnip-route
+  namespace: tomscatnip
+  labels: #Labels are how all the services and routes tie together
+    app: tomscatnip
+    app.kubernetes.io/component: tomscatnip
+    app.kubernetes.io/instance: tomscatnip
+spec:
+  host: ""
+  port:
+    targetPort: 5000 #Must be the port that the Pod Daemon listens on
+  to:
+    kind: Service
+    name: tomscatnip-service #Calls the Service Name
+    weight: 100
+status:
+  ingress:
+  - conditions:
+    - status: "True"
+      type: Admitted

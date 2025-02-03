@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tomscatnip
+  name: tomscatnip-deployment
+  labels: #Labels are how all the services and routes tie together
+    app: tomscatnip
+    app.kubernetes.io/component: tomscatnip
+    app.kubernetes.io/instance: tomscatnip
+spec:
+  selector:
+    matchLabels:
+      app: tomscatnip
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tomscatnip
+    spec:
+      containers:
+      - name: tomscatnip-pod
+        image: docker.io/devopsguru91/test-jenkins-image:latest #image-registry.openshift-image-registry.svc:5000/trusted-images/catnip:v1.0
+        ports:
+        - containerPort: 5000 #Container Pod Daemon listens on this
